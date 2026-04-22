@@ -41,12 +41,12 @@
         </div>
 
         <div class="flex justify-between mb-6 sticky top-2 bg-white shadow-md rounded-full p-1 z-30 border border-orange-200 overflow-x-auto no-scrollbar">
-            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[50px] rounded-full">✨心得</button>
-            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">📍地図</button>
-            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">👜準備</button>
-            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">🎬動画</button>
-            <button onclick="showPage('emergency')" id="tab-emergency" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">🏥緊急</button>
-            <button onclick="showPage('form')" id="tab-form" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">📮声</button>
+            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">✨心得</button>
+            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">📍地図</button>
+            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">👜準備</button>
+            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">🎬動画</button>
+            <button onclick="showPage('emergency')" id="tab-emergency" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">🏥緊急</button>
+            <button onclick="showPage('form')" id="tab-form" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">📮声</button>
         </div>
 
         <div id="page-heart" class="space-y-4 px-2">
@@ -81,11 +81,12 @@
                     <iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-3">
+            <div class="grid grid-cols-1 gap-3 text-sm">
                 <button onclick="quickSearch('支援センター 室内遊び場')" class="bg-white p-4 rounded-xl border-l-4 border-blue-400 shadow-sm text-left font-bold action-button">🧸 支援センター・室内遊び場</button>
                 <button onclick="quickSearch('大きな公園 アスレチック')" class="bg-white p-4 rounded-xl border-l-4 border-green-400 shadow-sm text-left font-bold action-button">🌳 公園・大型遊具</button>
+                <button onclick="quickSearch('水族館 動物園')" class="bg-white p-4 rounded-xl border-l-4 border-cyan-400 shadow-sm text-left font-bold action-button">🐬 水族館・動物園</button>
                 <button onclick="quickSearch('観光スポット レジャー施設')" class="bg-white p-4 rounded-xl border-l-4 border-indigo-400 shadow-sm text-left font-bold action-button">🔭 観光・レジャー・道の駅</button>
-                <button onclick="quickSearch('ショッピングモール')" class="bg-white p-4 rounded-xl border-l-4 border-pink-400 shadow-sm text-left font-bold action-button">🛍 ショッピングモール</button>
+                <button onclick="quickSearch('ショッピングモール 西松屋')" class="bg-white p-4 rounded-xl border-l-4 border-pink-400 shadow-sm text-left font-bold action-button">🛍 ショッピングモール</button>
             </div>
         </div>
 
@@ -124,13 +125,22 @@
         <div id="page-emergency" class="hidden space-y-4 px-2">
             <div class="bg-red-50 p-5 rounded-3xl border-2 border-red-200 card-shadow">
                 <h3 class="text-red-700 font-bold text-center mb-4 text-sm">🏥 緊急お守りダイヤル</h3>
-                <a href="tel:8000" class="bg-white border-2 border-red-400 p-4 rounded-2xl flex justify-between items-center action-button mb-3">
-                    <div class="text-left">
-                        <p class="text-[10px] text-red-500 font-bold">夜間・休日の医療相談</p>
-                        <p class="font-bold text-red-800 italic text-xl">#8000</p>
-                    </div>
-                    <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">電話をかける</span>
-                </a>
+                <div class="space-y-3">
+                    <a href="tel:8000" class="bg-white border-2 border-red-400 p-4 rounded-2xl flex justify-between items-center action-button">
+                        <div class="text-left">
+                            <p class="text-[10px] text-red-500 font-bold">夜間・休日の相談</p>
+                            <p class="font-bold text-red-800 italic text-xl">#8000</p>
+                        </div>
+                        <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">子ども医療相談</span>
+                    </a>
+                    <a href="tel:7119" class="bg-white border-2 border-gray-400 p-4 rounded-2xl flex justify-between items-center action-button">
+                        <div class="text-left">
+                            <p class="text-[10px] text-gray-500 font-bold">救急車か迷ったら</p>
+                            <p class="font-bold text-gray-800 italic text-xl">#7119</p>
+                        </div>
+                        <span class="text-xs font-bold text-gray-600 bg-gray-50 px-2 py-1 rounded">救急安心センター</span>
+                    </a>
+                </div>
             </div>
             <div class="bg-white p-5 rounded-3xl border-2 border-blue-200 card-shadow">
                 <h3 class="text-blue-800 font-bold text-center mb-4 text-sm">📍 近隣検索</h3>
@@ -171,8 +181,10 @@
             const query = document.getElementById('mapSearchInput').value;
             if (query) {
                 currentTargetArea = query;
-                const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
-                document.getElementById('mapFrame').src = mapUrl;
+                const mapUrl = `https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=${encodeURIComponent(query)}`;
+                // プレースホルダとして簡易的な表示に留めるか、直リンクにする
+                const directUrl = `https://www.google.co.jp/maps/search/${encodeURIComponent(query)}`;
+                document.getElementById('mapFrame').src = `https://maps.google.co.jp/maps?q=${encodeURIComponent(query)}&output=embed`;
                 document.getElementById('mapContainer').style.display = 'block';
             }
         }
