@@ -65,6 +65,17 @@
         </div>
 
         <div id="page-map" class="hidden space-y-4 px-2">
+            <div class="bg-white p-4 rounded-2xl card-shadow border-2 border-blue-100 text-center">
+                <p class="text-[12px] font-bold text-gray-500 mb-2">🔎 行き先・近隣の地図を検索</p>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" id="mapSearchInput" placeholder="例：鳥取県 境港市" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-400">
+                    <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md action-button">検索</button>
+                </div>
+                <div id="mapContainer" style="display: none;">
+                    <iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-blue-400 flex justify-between items-center">
                 <span class="font-bold text-sm text-blue-900">🧸 子供、支援センター</span>
                 <a href="https://www.google.co.jp/maps/search/%E5%AD%90%E4%BE%9B+%E6%94%AF%E6%8F%B4%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" class="bg-blue-50 text-blue-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
@@ -80,10 +91,6 @@
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-indigo-400 flex justify-between items-center">
                 <span class="font-bold text-sm text-indigo-900">🔭 観光スポット、レジャー</span>
                 <a href="https://www.google.co.jp/maps/search/%E8%A6%B3%E5%85%89%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88+%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BC" target="_blank" class="bg-indigo-50 text-indigo-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
-            </div>
-            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-orange-500 flex justify-between items-center">
-                <span class="font-bold text-sm text-orange-900">🐟 水族館・動物園</span>
-                <a href="https://www.google.co.jp/maps/search/%E6%B0%B4%E6%97%8F%E9%A4%A8+%E5%8B%95%E7%89%A9%E5%9C%92" target="_blank" class="bg-orange-50 text-orange-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
             </div>
         </div>
 
@@ -123,12 +130,14 @@
                 <h3 class="font-bold mb-2 text-orange-800 text-sm">改善・リクエスト意見箱</h3>
                 <p class="text-[11px] mb-6 text-orange-700 leading-relaxed text-left">
                     「この持ち物を追加してほしい！」「こんな心得がほしい」など、皆様の声を元に『ゆるかけ』をより良くしていきます。
+                </p>
                 <p style="text-align: center; margin-top: 20px;">
-    ご要望や不具合などは、こちらから教えてください：<br>
-    <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" style="color: #f8961e; font-weight: bold; text-decoration: underline;">
-        ご意見箱（Googleフォーム）を開く
-    </a>
-</p>
+                    ご要望や不具合などは、こちらから教えてください：<br>
+                    <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" style="color: #f8961e; font-weight: bold; text-decoration: underline;">
+                        ご意見箱（Googleフォーム）を開く
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 
@@ -146,6 +155,21 @@
             activeTab.classList.add('active-tab');
             activeTab.classList.remove('text-gray-500');
             window.scrollTo(0,0);
+        }
+
+        // --- 地図検索機能 ---
+        function searchMap() {
+            const query = document.getElementById('mapSearchInput').value;
+            if (query) {
+                // 地図をiframeに表示
+                const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+                const frame = document.getElementById('mapFrame');
+                const container = document.getElementById('mapContainer');
+                frame.src = mapUrl;
+                container.style.display = 'block';
+            } else {
+                alert("場所を入力してくださいね");
+            }
         }
 
         // --- 位置情報の自動取得機能 ---
