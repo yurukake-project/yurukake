@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゆるかけ - 子供とゆるっとお出かけ</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fffaf0; }
+        .header { text-align: center; padding: 20px; background: #fff; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .location-box { background: #fff; border: 2px solid #ffcc00; border-radius: 15px; padding: 15px; margin: 20px 0; text-align: center; }
+        .card { background: #fff; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        h1 { color: #ff9900; font-size: 1.5rem; }
+        h2 { border-bottom: 2px solid #ffcc00; padding-bottom: 5px; color: #555; font-size: 1.2rem; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .btn { display: inline-block; padding: 10px 20px; background: #ffcc00; color: #fff; text-decoration: none; border-radius: 25px; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>☕️ ゆるかけ</h1>
+    <p>子供とゆるっとお出かけ。頑張らない日のガイド帳</p>
+</div>
+
+<div class="location-box">
+    <p style="font-size: 0.8rem; color: #888; margin: 0;">📍 いまの場所</p>
+    <h3 id="city-display" style="margin: 5px 0; color: #ff9900;">位置情報を確認中...</h3>
+    <p id="welcome-msg" style="font-size: 0.9rem; margin: 0; color: #666;">お出かけお疲れ様です✨</p>
+</div>
+
+<div class="card">
+    <h2>✨ 心得</h2>
+    <ul>
+        <li>目的地にたどり着けなくても大丈夫です。途中の道でアリを観察するのも立派なお出かけです。</li>
+        <li>準備が完璧じゃなくてもなんとかなります。足りないものは現地で買うくらいの気持ちでいましょう。</li>
+        <li>疲れる前に休むことを優先しましょう。親のHPがゼロになる前に、カフェや休憩室を使いましょう。</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🛍 近くのスポットを探す</h2>
+    <p>🧸 支援センター / 🌳 公園 / 🛍 モール / 🐟 水族館</p>
+    <a href="https://www.google.com/maps/search/" class="btn" target="_blank">Googleマップで探す</a>
+</div>
+
+<div class="card">
+    <h2>👜 準備チェックリスト</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li>✅ おむつ・おしりふき</li>
+        <li>✅ 着替え・タオル</li>
+        <li>✅ 飲み物・おやつ</li>
+        <li>✅ 母子手帳・保険証</li>
+    </ul>
+</div>
+
+<script>
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
+                    headers: { 'Accept-Language': 'ja' }
+                });
+                const data = await response.json();
+                const address = data.address;
+                const city = address.city || address.town || address.village || address.county || "どこかの素敵な街";
+                
+                document.getElementById('city-display').innerText = city;
+                // 特定の地名によるメッセージの切り替えを削除しました
+            } catch (e) {
+                document.getElementById('city-display').innerText = "日本国内のどこか";
+            }
+        }, () => {
+            document.getElementById('city-display').innerText = "お出かけ中";
+        });
+    }
+</script>
+
+</body>
+</html>
