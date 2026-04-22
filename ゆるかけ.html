@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
+    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .active-tab { border-bottom: 4px solid #f6ad55; color: #c05621; background-color: #fffaf0; }
@@ -19,8 +20,6 @@
         .header-soft { background-color: #fbd38d; border-radius: 0 0 40px 40px; }
         .card-shadow { box-shadow: 0 4px 14px 0 rgba(237, 137, 54, 0.1); }
         .kokoroe-text { font-size: 16px; line-height: 1.8; font-weight: 600; color: #5a4a42; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body class="p-0 pb-24 text-gray-800">
@@ -31,7 +30,7 @@
     </header>
 
     <div class="px-2">
-        <div class="bg-white mx-4 p-3 rounded-2xl border-2 border-orange-200 text-center mb-4 card-shadow">
+        <div class="bg-white mx-4 p-4 rounded-2xl border-2 border-orange-200 text-center mb-6 card-shadow">
             <p class="text-[10px] text-gray-400">📍 いまの場所</p>
             <h3 id="city-display" class="font-bold text-orange-600 text-lg">位置情報を確認中...</h3>
         </div>
@@ -45,6 +44,9 @@
         </div>
 
         <div id="page-heart" class="space-y-6 px-2">
+            <div class="text-center py-2">
+                <span class="bg-orange-200 text-orange-900 px-4 py-1 rounded-full text-xs font-bold">ゆるかけの心得</span>
+            </div>
             <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
                 <p class="kokoroe-text">● 目的地にたどり着けなくても大丈夫です。途中の道でアリを観察するのも立派なお出かけです。</p>
             </div>
@@ -54,20 +56,34 @@
             <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
                 <p class="kokoroe-text">● 疲れる前に休むことを優先しましょう。親のHPがゼロになる前に、カフェや休憩室を使いましょう。</p>
             </div>
+            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
+                <p class="kokoroe-text">● 周りの目は気にしすぎないようにしましょう。みんな心の中では「お疲れ様」と応援しています。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
+                <p class="kokoroe-text">● 笑顔で帰れたら100点満点です。泣いて帰っても「今日は大冒険だったね」と自分を褒めましょう。</p>
+            </div>
         </div>
 
         <div id="page-map" class="hidden space-y-4 px-2">
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-blue-400 flex justify-between items-center">
-                <span class="font-bold text-sm text-blue-900">🧸 支援センター</span>
+                <span class="font-bold text-sm text-blue-900">🧸 子供、支援センター</span>
                 <a href="https://www.google.co.jp/maps/search/%E5%AD%90%E4%BE%9B+%E6%94%AF%E6%8F%B4%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" class="bg-blue-50 text-blue-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
             </div>
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-green-400 flex justify-between items-center">
-                <span class="font-bold text-sm text-green-900">🌳 公園・遊び場</span>
-                <a href="https://www.google.co.jp/maps/search/%E5%85%AC%E5%9C%92+%E5%AD%90%E4%BE%9B%E9%81%8A%E3%81%B3%E5%A0%B4" target="_blank" class="bg-green-50 text-green-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+                <span class="font-bold text-sm text-green-900">🌳 公園 子供遊び場 キッズ</span>
+                <a href="https://www.google.co.jp/maps/search/%E5%85%AC%E5%9C%92+%E5%AD%90%E4%BE%9B%E9%81%8A%E3%81%B3%E5%A0%B4+%E3%82%AD%E3%83%83%E3%82%BA" target="_blank" class="bg-green-50 text-green-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
             </div>
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-pink-400 flex justify-between items-center">
-                <span class="font-bold text-sm text-pink-900">🛍 モール・赤ちゃん</span>
+                <span class="font-bold text-sm text-pink-900">🛍 モール 赤ちゃん</span>
                 <a href="https://www.google.co.jp/maps/search/%E3%82%B7%E3%83%A7%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%BC%E3%83%AB+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93" target="_blank" class="bg-pink-50 text-pink-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+            </div>
+            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-indigo-400 flex justify-between items-center">
+                <span class="font-bold text-sm text-indigo-900">🔭 観光スポット、レジャー</span>
+                <a href="https://www.google.co.jp/maps/search/%E8%A6%B3%E5%85%89%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88+%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BC" target="_blank" class="bg-indigo-50 text-indigo-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+            </div>
+            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-orange-500 flex justify-between items-center">
+                <span class="font-bold text-sm text-orange-900">🐟 水族館・動物園</span>
+                <a href="https://www.google.co.jp/maps/search/%E6%B0%B4%E6%97%8F%E9%A4%A8+%E5%8B%95%E7%89%A9%E5%9C%92" target="_blank" class="bg-orange-50 text-orange-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
             </div>
         </div>
 
@@ -75,36 +91,47 @@
             <div class="bg-white p-5 rounded-2xl card-shadow border-l-8 border-orange-400">
                 <h3 class="font-bold mb-4 text-orange-800 text-sm italic">👜 忘れ物ないかな？</h3>
                 <div class="space-y-3 text-[14px]">
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ・おしりふき</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>水筒・飲み物</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おやつ（ぐずり対策）</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・袋</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ（多めに）・おしりふき</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・ビニール袋</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>飲み物・おやつ・離乳食</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>使い捨てエプロン・紙パックケース</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>除菌シート・ティッシュ</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>母子手帳・保険証</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>お気に入りのおもちゃ・絵本</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>母子手帳・保険証・受給券</span></label>
                 </div>
             </div>
         </div>
 
-        <div id="page-video" class="hidden space-y-4 px-2">
-            <div class="bg-white p-4 rounded-2xl card-shadow">
-                <h3 class="font-bold mb-3 text-orange-800 text-sm text-center">📺 ほっと一息（癒やし動画）</h3>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/videoseries?list=PL7jN_Csc0f_vNlO7IAn_Ie7mZkaX8eIu0" allowfullscreen></iframe>
+        <div id="page-video" class="hidden space-y-4 px-2 text-center">
+            <div class="bg-white p-6 rounded-2xl card-shadow border-2 border-orange-100">
+                <h3 class="font-bold mb-4 text-orange-800 text-sm">📺 おたすけ動画</h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md">🙌 手遊び・歌</a>
+                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold shadow-md">📖 読み聞かせ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold shadow-md">🌙 寝かしつけ</a>
+                    <div class="grid grid-cols-2 gap-2 mt-1">
+                        <a href="https://www.youtube.com/results?search_query=0%E6%AD%B3+1%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6" target="_blank" class="bg-orange-300 text-white py-3 rounded-xl font-bold text-xs">👶 0〜1歳</a>
+                        <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+3%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6" target="_blank" class="bg-orange-500 text-white py-3 rounded-xl font-bold text-xs">👦 2〜3歳</a>
+                    </div>
                 </div>
-                <p class="text-[10px] text-gray-400 mt-2 text-center">※右上のアイコンから動画を選べます</p>
             </div>
         </div>
 
-        <div id="page-form" class="hidden px-2 text-center">
+        <div id="page-form" class="hidden space-y-6 px-2 text-center">
             <div class="bg-orange-50 p-8 rounded-3xl border-2 border-orange-200">
-                <h3 class="font-bold mb-2 text-orange-800 text-sm">📮 改善・リクエスト意見箱</h3>
-                <a href="#" class="action-button block w-full bg-white text-orange-600 border-2 border-orange-400 py-4 rounded-2xl font-bold text-sm shadow-sm">意見を送る</a>
+                <div class="text-4xl mb-4">📮</div>
+                <h3 class="font-bold mb-2 text-orange-800 text-sm">改善・リクエスト意見箱</h3>
+                <p class="text-[11px] mb-6 text-orange-700 leading-relaxed text-left">
+                    「この持ち物を追加してほしい！」「こんな心得がほしい」など、皆様の声を元に『ゆるかけ』をより良くしていきます。
+                </p>
+                <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" target="_blank" class="action-button block w-full bg-white text-orange-600 border-2 border-orange-400 py-4 rounded-2xl font-bold text-sm shadow-sm">
+                    意見を送る（匿名）
+                </a>
             </div>
         </div>
     </div>
 
     <script>
-        // タブ切り替え機能
         function showPage(pageName) {
             const pages = ['heart', 'map', 'check', 'video', 'form'];
             pages.forEach(p => {
@@ -120,7 +147,7 @@
             window.scrollTo(0,0);
         }
 
-        // 位置情報の取得（アクセスした人の場所を表示）
+        // --- 位置情報の自動取得機能 ---
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 const lat = position.coords.latitude;
@@ -131,10 +158,10 @@
                     });
                     const data = await response.json();
                     const address = data.address;
-                    const city = address.city || address.town || address.village || address.county || "どこかの街";
+                    const city = address.city || address.town || address.village || address.county || "どこかの素敵な街";
                     document.getElementById('city-display').innerText = city;
                 } catch (e) {
-                    document.getElementById('city-display').innerText = "お出かけ中";
+                    document.getElementById('city-display').innerText = "日本国内のどこか";
                 }
             }, () => {
                 document.getElementById('city-display').innerText = "お出かけ中";
