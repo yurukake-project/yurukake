@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゆるかけ - 子供とゆるっとお出かけ</title>
     
-    <meta name="description" content="子供とゆるっとお出かけするためのガイド帳。公園や室内遊び場の検索、持ち物チェックリスト、緊急時の連絡先・小児科検索まで。">
+    <meta name="description" content="子供とゆるっとお出かけするためのガイド帳。公園検索、持ち物チェック、月齢別動画、緊急ダイヤルまで。">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,17 +14,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .active-tab { border-bottom: 4px solid #f6ad55; color: #c05621; background-color: #fffaf0; }
-        .tab-text { font-size: 12px; font-weight: 800; letter-spacing: -0.5px; }
+        .tab-text { font-size: 10px; font-weight: 800; letter-spacing: -0.8px; white-space: nowrap; }
         
         body { font-family: 'Hiragino Kaku Gothic ProN', sans-serif; background-color: #fdfaf3; max-width: 600px; margin: 0 auto; }
         .action-button { transition: transform 0.1s; }
         .action-button:active { transform: scale(0.95); }
         .header-soft { background-color: #fbd38d; border-radius: 0 0 40px 40px; }
         .card-shadow { box-shadow: 0 4px 14px 0 rgba(237, 137, 54, 0.1); }
-        .kokoroe-text { font-size: 16px; line-height: 1.8; font-weight: 600; color: #5a4a42; }
+        .kokoroe-text { font-size: 15px; line-height: 1.8; font-weight: 600; color: #5a4a42; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-        .guide-message { animation: fadeIn 0.4s ease-out; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="p-0 pb-24 text-gray-800">
@@ -40,98 +40,52 @@
             <h3 id="city-display" class="font-bold text-orange-600 text-lg">位置情報を確認中...</h3>
         </div>
 
-        <div class="flex justify-around mb-6 sticky top-2 bg-white shadow-md rounded-full p-1 z-30 border border-orange-200 overflow-x-auto">
-            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[60px] rounded-full transition-all">✨心得</button>
-            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[60px] rounded-full transition-all">📍地図</button>
-            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[60px] rounded-full transition-all">👜準備</button>
-            <button onclick="showPage('emergency')" id="tab-emergency" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[60px] rounded-full transition-all">🏥緊急</button>
-            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[60px] rounded-full transition-all">🎬動画</button>
+        <div class="flex justify-between mb-6 sticky top-2 bg-white shadow-md rounded-full p-1 z-30 border border-orange-200 overflow-x-auto no-scrollbar">
+            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[50px] rounded-full">✨心得</button>
+            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">📍地図</button>
+            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">👜準備</button>
+            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">🎬動画</button>
+            <button onclick="showPage('emergency')" id="tab-emergency" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">🏥緊急</button>
+            <button onclick="showPage('form')" id="tab-form" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">📮声</button>
         </div>
 
-        <div id="page-heart" class="space-y-6 px-2">
-            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
-                <p class="kokoroe-text">● 目的地にたどり着けなくても大丈夫。途中の道でアリを観察するのも立派なお出かけです。</p>
+        <div id="page-heart" class="space-y-4 px-2">
+            <div class="text-center pb-2">
+                <span class="bg-orange-100 text-orange-800 px-4 py-1 rounded-full text-[10px] font-bold tracking-widest">お出かけがラクになるお守り</span>
             </div>
-            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
-                <p class="kokoroe-text">● 疲れる前に休むことを優先しましょう。親のHPがゼロになる前に休憩室を使いましょう。</p>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
+                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">目的地にたどり着けなくても大丈夫。</span>途中の道でアリを観察するのも、立派な「大冒険」です。</p>
             </div>
-            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
-                <p class="kokoroe-text">● 笑顔で帰れたら100点満点。泣いて帰っても「今日は大冒険だった」と褒めましょう。</p>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
+                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">親のHPを最優先に。</span>自分が疲れる前に休みましょう。休憩室は親が座るためにあります。</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
+                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">「何もしない」をしに行こう。</span>予定を詰め込まないのが、子供との一番贅沢な過ごし方です。</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
+                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">泣いても、それも思い出。</span>公共の場で泣いちゃっても大丈夫。いつか笑えるネタになります。</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
+                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">笑顔で帰れたら100点満点。</span>もし泣いて帰っても、無事に帰宅できただけで花丸です。</p>
             </div>
         </div>
 
         <div id="page-map" class="hidden space-y-4 px-2">
             <div class="bg-white p-4 rounded-2xl card-shadow border-2 border-blue-100 text-center">
-                <p class="text-[12px] font-bold text-gray-500 mb-2">🔎 行き先・近隣の地図を検索</p>
+                <p class="text-[12px] font-bold text-gray-500 mb-2">🔎 地図検索（場所を入力してね）</p>
                 <div class="flex gap-2 mb-2">
-                    <input type="text" id="mapSearchInput" placeholder="例：〇〇県 〇〇市" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-400">
+                    <input type="text" id="mapSearchInput" placeholder="例：〇〇市" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm">
                     <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md action-button">検索</button>
-                    <button onclick="clearMap()" class="bg-gray-200 text-gray-600 px-3 py-2 rounded-lg font-bold text-sm action-button">✕</button>
-                </div>
-                <div id="search-guide" class="guide-message bg-blue-50 text-blue-600 text-[11px] font-bold py-2 px-3 rounded-xl mb-2 hidden">
-                    ✅ セット完了！下の「探す」ボタンを押すと、その場所のスポットが表示されます👇
                 </div>
                 <div id="mapContainer" style="display: none;">
                     <iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 gap-3">
-                <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-blue-400 flex justify-between items-center">
-                    <span class="font-bold text-sm text-blue-900">🧸 支援センター・室内遊び場</span>
-                    <button onclick="quickSearch('子供 支援センター 室内遊び場')" class="bg-blue-50 text-blue-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
-                </div>
-                <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-green-400 flex justify-between items-center">
-                    <span class="font-bold text-sm text-green-900">🌳 公園・大型遊具・広場</span>
-                    <button onclick="quickSearch('公園 大型遊具 子供遊び場')" class="bg-green-50 text-green-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
-                </div>
-                <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-cyan-400 flex justify-between items-center">
-                    <span class="font-bold text-sm text-cyan-900">🐬 水族館・動物園</span>
-                    <button onclick="quickSearch('水族館 動物園')" class="bg-cyan-50 text-cyan-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
-                </div>
-                <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-indigo-400 flex justify-between items-center">
-                    <span class="font-bold text-sm text-indigo-900">🔭 観光・レジャー・道の駅</span>
-                    <button onclick="quickSearch('観光スポット レジャー施設 道の駅')" class="bg-indigo-50 text-indigo-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
-                </div>
-                <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-pink-400 flex justify-between items-center">
-                    <span class="font-bold text-sm text-pink-900">🛍 モール・ベビー用品店</span>
-                    <button onclick="quickSearch('ショッピングモール 西松屋 アカチャンホンポ')" class="bg-pink-50 text-pink-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="page-emergency" class="hidden space-y-4 px-2">
-            <div class="bg-red-50 p-5 rounded-3xl border-2 border-red-200 card-shadow">
-                <h3 class="text-red-700 font-bold text-center mb-4 text-sm">🏥 もしもの時のお守りダイヤル</h3>
-                <div class="space-y-3">
-                    <a href="tel:8000" class="bg-white border-2 border-red-400 p-4 rounded-2xl flex justify-between items-center action-button">
-                        <div class="text-left">
-                            <p class="text-[10px] text-red-500 font-bold">夜間・休日の体調相談</p>
-                            <p class="font-bold text-red-800">子ども医療電話相談</p>
-                        </div>
-                        <span class="text-2xl font-black text-red-600 italic">#8000</span>
-                    </a>
-                    <a href="tel:7119" class="bg-white border-2 border-gray-400 p-4 rounded-2xl flex justify-between items-center action-button">
-                        <div class="text-left">
-                            <p class="text-[10px] text-gray-500 font-bold">救急車か迷ったら</p>
-                            <p class="font-bold text-gray-800">救急安心センター</p>
-                        </div>
-                        <span class="text-2xl font-black text-gray-600 italic">#7119</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="bg-white p-5 rounded-3xl border-2 border-orange-200 card-shadow">
-                <h3 class="text-orange-800 font-bold text-center mb-4 text-sm">📍 近くの安心スポットを探す</h3>
-                <div class="grid grid-cols-1 gap-3">
-                    <button onclick="quickSearch('小児科 土日診療あり')" class="bg-blue-600 text-white p-4 rounded-2xl font-bold flex items-center justify-center space-x-2 action-button">
-                        <span>🌡 近くの小児科を探す</span>
-                    </button>
-                    <button onclick="quickSearch('指定緊急避難場所')" class="bg-green-600 text-white p-4 rounded-2xl font-bold flex items-center justify-center space-x-2 action-button">
-                        <span>🏃‍♂️ 近くの避難場所を探す</span>
-                    </button>
-                </div>
-                <p class="text-[10px] text-gray-400 mt-4 text-center leading-relaxed">※検索ボタンを押すとGoogleマップが開きます。</p>
+                <button onclick="quickSearch('支援センター 室内遊び場')" class="bg-white p-4 rounded-xl border-l-4 border-blue-400 shadow-sm text-left font-bold action-button">🧸 支援センター・室内遊び場</button>
+                <button onclick="quickSearch('大きな公園 アスレチック')" class="bg-white p-4 rounded-xl border-l-4 border-green-400 shadow-sm text-left font-bold action-button">🌳 公園・大型遊具</button>
+                <button onclick="quickSearch('観光スポット レジャー施設')" class="bg-white p-4 rounded-xl border-l-4 border-indigo-400 shadow-sm text-left font-bold action-button">🔭 観光・レジャー・道の駅</button>
+                <button onclick="quickSearch('ショッピングモール')" class="bg-white p-4 rounded-xl border-l-4 border-pink-400 shadow-sm text-left font-bold action-button">🛍 ショッピングモール</button>
             </div>
         </div>
 
@@ -140,27 +94,59 @@
                 <h3 class="font-bold mb-4 text-orange-800 text-sm italic">👜 忘れ物はないですか？</h3>
                 <div class="space-y-3 text-[14px]">
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ・おしりふき</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・ビニール袋</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>飲み物・おやつ・離乳食</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500 font-bold text-blue-600"> <span>使い捨てエプロン・紙パックケース</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>飲み物・おやつ・離乳食</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>除菌シート・ティッシュ</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>母子手帳・保険証・受給券</span></label>
                 </div>
             </div>
         </div>
 
-        <div id="page-video" class="hidden space-y-4 px-2 text-center">
-            <div class="bg-white p-6 rounded-2xl card-shadow border-2 border-orange-100">
-                <h3 class="font-bold mb-4 text-orange-800 text-sm">📺 月齢・年齢でさがす</h3>
+        <div id="page-video" class="hidden space-y-4 px-2">
+            <div class="bg-white p-5 rounded-2xl card-shadow border-2 border-orange-100">
+                <h3 class="font-bold mb-4 text-orange-800 text-sm text-center italic underline">📺 月齢別でさがす</h3>
                 <div class="grid grid-cols-2 gap-2 mb-6">
-                    <a href="https://www.youtube.com/results?search_query=%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB+0%E6%AD%B3" target="_blank" class="bg-pink-100 text-pink-700 py-3 rounded-xl font-bold text-xs">👶 0歳</a>
-                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3%E5%85%90+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-100 text-orange-700 py-3 rounded-xl font-bold text-xs">🐥 1歳</a>
-                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3%E5%85%90+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-100 text-yellow-700 py-3 rounded-xl font-bold text-xs">🏃‍♂️ 2歳</a>
-                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-100 text-green-700 py-3 rounded-xl font-bold text-xs">🎒 3歳〜</a>
+                    <a href="https://www.youtube.com/results?search_query=0%E6%AD%B3+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6" target="_blank" class="bg-pink-50 text-pink-600 py-4 rounded-xl text-center text-xs font-bold action-button">👶 0歳</a>
+                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-50 text-orange-600 py-4 rounded-xl text-center text-xs font-bold action-button">🐥 1歳</a>
+                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-50 text-yellow-600 py-4 rounded-xl text-center text-xs font-bold action-button">🏃‍♂️ 2歳</a>
+                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-50 text-green-600 py-4 rounded-xl text-center text-xs font-bold action-button">🎒 3歳〜</a>
                 </div>
-                <div class="grid grid-cols-1 gap-3 border-t pt-4">
-                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🙌 手遊び・歌</a>
+
+                <h3 class="font-bold mb-4 text-orange-800 text-sm text-center italic underline border-t pt-4">🎵 目的・内容でさがす</h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C+%E5%AD%90%E4%BE%9B" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold text-center shadow-md action-button">🙌 手遊び・歌</a>
+                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold text-center shadow-md action-button">📖 読み聞かせ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold text-center shadow-md action-button">🌙 寝かしつけ音</a>
                 </div>
+            </div>
+        </div>
+
+        <div id="page-emergency" class="hidden space-y-4 px-2">
+            <div class="bg-red-50 p-5 rounded-3xl border-2 border-red-200 card-shadow">
+                <h3 class="text-red-700 font-bold text-center mb-4 text-sm">🏥 緊急お守りダイヤル</h3>
+                <a href="tel:8000" class="bg-white border-2 border-red-400 p-4 rounded-2xl flex justify-between items-center action-button mb-3">
+                    <div class="text-left">
+                        <p class="text-[10px] text-red-500 font-bold">夜間・休日の医療相談</p>
+                        <p class="font-bold text-red-800 italic text-xl">#8000</p>
+                    </div>
+                    <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">電話をかける</span>
+                </a>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border-2 border-blue-200 card-shadow">
+                <h3 class="text-blue-800 font-bold text-center mb-4 text-sm">📍 近隣検索</h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <button onclick="quickSearch('小児科')" class="bg-blue-600 text-white p-4 rounded-2xl font-bold action-button">🌡 近くの小児科を探す</button>
+                    <button onclick="quickSearch('避難場所')" class="bg-green-600 text-white p-4 rounded-2xl font-bold action-button">🏃‍♂️ 近くの避難場所を探す</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-form" class="hidden space-y-6 px-2 text-center">
+            <div class="bg-orange-50 p-8 rounded-3xl border-2 border-orange-200">
+                <div class="text-4xl mb-4">📮</div>
+                <h3 class="font-bold mb-2 text-orange-800 text-sm">意見箱</h3>
+                <p class="text-[10px] text-gray-500 mb-4">「こんな機能がほしい」など<br>お気軽にお寄せください</p>
+                <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" class="inline-block bg-orange-400 text-white px-8 py-3 rounded-full font-bold shadow-md action-button">フォームを開く</a>
             </div>
         </div>
     </div>
@@ -169,7 +155,7 @@
         let currentTargetArea = ""; 
 
         function showPage(pageName) {
-            const pages = ['heart', 'map', 'check', 'emergency', 'video'];
+            const pages = ['heart', 'map', 'check', 'video', 'emergency', 'form'];
             pages.forEach(p => {
                 document.getElementById('page-' + p).classList.add('hidden');
                 document.getElementById('tab-' + p).classList.remove('active-tab');
@@ -185,12 +171,9 @@
             const query = document.getElementById('mapSearchInput').value;
             if (query) {
                 currentTargetArea = query;
-                document.getElementById('search-guide').classList.remove('hidden');
                 const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
                 document.getElementById('mapFrame').src = mapUrl;
                 document.getElementById('mapContainer').style.display = 'block';
-            } else {
-                alert("場所を入力してくださいね");
             }
         }
 
@@ -199,14 +182,6 @@
             const fullQuery = area + " " + category;
             const googleMapsUrl = `https://www.google.co.jp/maps/search/${encodeURIComponent(fullQuery)}`;
             window.open(googleMapsUrl, '_blank');
-        }
-
-        function clearMap() {
-            document.getElementById('mapSearchInput').value = "";
-            document.getElementById('mapContainer').style.display = 'none';
-            document.getElementById('mapFrame').src = "";
-            document.getElementById('search-guide').classList.add('hidden');
-            currentTargetArea = "";
         }
 
         if (navigator.geolocation) {
