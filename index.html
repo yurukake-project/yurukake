@@ -72,6 +72,7 @@
                     <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md action-button">検索</button>
                     <button onclick="clearMap()" class="bg-gray-200 text-gray-600 px-3 py-2 rounded-lg font-bold text-sm action-button">✕</button>
                 </div>
+                <p id="search-status" class="text-[10px] text-blue-400 font-bold mb-2 h-4"></p>
                 <div id="mapContainer" style="display: none;">
                     <iframe id="mapFrame" width="100%" height="350" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
@@ -79,15 +80,19 @@
 
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-blue-400 flex justify-between items-center">
                 <span class="font-bold text-sm text-blue-900">🧸 子供、支援センター</span>
-                <a href="https://www.google.co.jp/maps/search/%E5%AD%90%E4%BE%9B+%E6%94%AF%E6%8F%B4%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" class="bg-blue-50 text-blue-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+                <button onclick="quickSearch('子供 支援センター')" class="bg-blue-50 text-blue-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
             </div>
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-green-400 flex justify-between items-center">
                 <span class="font-bold text-sm text-green-900">🌳 公園 子供遊び場 キッズ</span>
-                <a href="https://www.google.co.jp/maps/search/%E5%85%AC%E5%9C%92+%E5%AD%90%E4%BE%9B%E9%81%8A%E3%81%B3%E5%A0%B4+%E3%82%AD%E3%83%83%E3%82%BA" target="_blank" class="bg-green-50 text-green-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+                <button onclick="quickSearch('公園 子供遊び場 キッズ')" class="bg-green-50 text-green-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
             </div>
             <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-pink-400 flex justify-between items-center">
-                <span class="font-bold text-sm text-pink-900">🛍 モール 赤ちゃん</span>
-                <a href="https://www.google.co.jp/maps/search/%E3%82%B7%E3%83%A7%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%BC%E3%83%AB+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93" target="_blank" class="bg-pink-50 text-pink-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+                <span class="font-bold text-sm text-pink-900">🛍 モール 赤ちゃん用品</span>
+                <button onclick="quickSearch('ショッピングモール 赤ちゃん')" class="bg-pink-50 text-pink-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
+            </div>
+            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-indigo-400 flex justify-between items-center">
+                <span class="font-bold text-sm text-indigo-900">🔭 観光スポット、レジャー</span>
+                <button onclick="quickSearch('観光スポット レジャー')" class="bg-indigo-50 text-indigo-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
             </div>
         </div>
 
@@ -95,12 +100,10 @@
             <div class="bg-white p-5 rounded-2xl card-shadow border-l-8 border-orange-400">
                 <h3 class="font-bold mb-4 text-orange-800 text-sm italic">👜 忘れ物はないですか？</h3>
                 <div class="space-y-3 text-[14px]">
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ（多めに）・おしりふき</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ・おしりふき</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・ビニール袋</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>飲み物・おやつ・離乳食</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>使い捨てエプロン・紙パックケース</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>除菌シート・ティッシュ</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>お気に入りのおもちゃ・絵本</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>母子手帳・保険証・受給券</span></label>
                 </div>
             </div>
@@ -112,7 +115,6 @@
                 <div class="grid grid-cols-1 gap-3">
                     <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md">🙌 手遊び・歌</a>
                     <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold shadow-md">📖 読み聞かせ</a>
-                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold shadow-md">🌙 寝かしつけ</a>
                 </div>
             </div>
         </div>
@@ -121,31 +123,22 @@
             <div class="bg-orange-50 p-8 rounded-3xl border-2 border-orange-200">
                 <div class="text-4xl mb-4">📮</div>
                 <h3 class="font-bold mb-2 text-orange-800 text-sm">改善・リクエスト意見箱</h3>
-                <p class="text-[11px] mb-6 text-orange-700 leading-relaxed text-left">
-                    「この持ち物を追加してほしい！」「こんな心得がほしい」など、皆様の声を元に『ゆるかけ』をより良くしていきます。
-                </p>
-                <p style="text-align: center; margin-top: 20px;">
-                    <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" style="color: #f8961e; font-weight: bold; text-decoration: underline;">
-                        ご意見箱（Googleフォーム）を開く
-                    </a>
-                </p>
+                <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" class="text-orange-600 font-bold underline">ご意見箱（Googleフォーム）</a>
             </div>
         </div>
     </div>
 
     <script>
+        let currentTargetArea = ""; // 検索された地域を保持
+
         function showPage(pageName) {
             const pages = ['heart', 'map', 'check', 'video', 'form'];
             pages.forEach(p => {
                 document.getElementById('page-' + p).classList.add('hidden');
-                const tab = document.getElementById('tab-' + p);
-                tab.classList.remove('active-tab');
-                tab.classList.add('text-gray-500');
+                document.getElementById('tab-' + p).classList.remove('active-tab');
             });
             document.getElementById('page-' + pageName).classList.remove('hidden');
-            const activeTab = document.getElementById('tab-' + pageName);
-            activeTab.classList.add('active-tab');
-            activeTab.classList.remove('text-gray-500');
+            document.getElementById('tab-' + pageName).classList.add('active-tab');
             window.scrollTo(0,0);
         }
 
@@ -153,6 +146,9 @@
         function searchMap() {
             const query = document.getElementById('mapSearchInput').value;
             if (query) {
+                currentTargetArea = query; // 地域を保存
+                document.getElementById('search-status').innerText = `現在「${query}」周辺をセット中`;
+                
                 const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
                 const frame = document.getElementById('mapFrame');
                 const container = document.getElementById('mapContainer');
@@ -163,10 +159,21 @@
             }
         }
 
+        // --- 連動するクイック検索 ---
+        function quickSearch(category) {
+            // 検索窓に何か入っていればその場所で、空なら現在地周辺で検索
+            const area = currentTargetArea || "現在地周辺";
+            const fullQuery = area + " " + category;
+            const googleMapsUrl = `https://www.google.co.jp/maps/search/${encodeURIComponent(fullQuery)}`;
+            window.open(googleMapsUrl, '_blank');
+        }
+
         function clearMap() {
             document.getElementById('mapSearchInput').value = "";
             document.getElementById('mapContainer').style.display = 'none';
             document.getElementById('mapFrame').src = "";
+            document.getElementById('search-status').innerText = "";
+            currentTargetArea = "";
         }
 
         // --- 位置情報の取得 ---
@@ -183,7 +190,7 @@
                     const city = address.city || address.town || address.village || address.county || "どこかの素敵な街";
                     document.getElementById('city-display').innerText = city;
                 } catch (e) {
-                    document.getElementById('city-display').innerText = "日本国内のどこか";
+                    document.getElementById('city-display').innerText = "お出かけ中";
                 }
             }, () => {
                 document.getElementById('city-display').innerText = "お出かけ中";
