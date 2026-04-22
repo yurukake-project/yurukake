@@ -86,7 +86,7 @@
                 <button onclick="quickSearch('大きな公園 アスレチック')" class="bg-white p-4 rounded-xl border-l-4 border-green-400 shadow-sm text-left font-bold action-button">🌳 公園・大型遊具</button>
                 <button onclick="quickSearch('水族館 動物園')" class="bg-white p-4 rounded-xl border-l-4 border-cyan-400 shadow-sm text-left font-bold action-button">🐬 水族館・動物園</button>
                 <button onclick="quickSearch('観光スポット レジャー施設')" class="bg-white p-4 rounded-xl border-l-4 border-indigo-400 shadow-sm text-left font-bold action-button">🔭 観光・レジャー・道の駅</button>
-                <button onclick="quickSearch('ショッピングモール 西松屋')" class="bg-white p-4 rounded-xl border-l-4 border-pink-400 shadow-sm text-left font-bold action-button">🛍 ショッピングモール</button>
+                <button onclick="quickSearch('ショッピングモール')" class="bg-white p-4 rounded-xl border-l-4 border-pink-400 shadow-sm text-left font-bold action-button">🛍 ショッピングモール</button>
             </div>
         </div>
 
@@ -95,6 +95,7 @@
                 <h3 class="font-bold mb-4 text-orange-800 text-sm italic">👜 忘れ物はないですか？</h3>
                 <div class="space-y-3 text-[14px]">
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ・おしりふき</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・ビニール袋</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500 font-bold text-blue-600"> <span>使い捨てエプロン・紙パックケース</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>飲み物・おやつ・離乳食</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>除菌シート・ティッシュ</span></label>
@@ -104,20 +105,19 @@
         </div>
 
         <div id="page-video" class="hidden space-y-4 px-2">
-            <div class="bg-white p-5 rounded-2xl card-shadow border-2 border-orange-100">
-                <h3 class="font-bold mb-4 text-orange-800 text-sm text-center italic underline">📺 月齢別でさがす</h3>
+            <div class="bg-white p-5 rounded-2xl card-shadow border-2 border-orange-100 text-center">
+                <h3 class="font-bold mb-4 text-orange-800 text-sm italic underline">📺 月齢別でさがす</h3>
                 <div class="grid grid-cols-2 gap-2 mb-6">
-                    <a href="https://www.youtube.com/results?search_query=0%E6%AD%B3+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6" target="_blank" class="bg-pink-50 text-pink-600 py-4 rounded-xl text-center text-xs font-bold action-button">👶 0歳</a>
-                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-50 text-orange-600 py-4 rounded-xl text-center text-xs font-bold action-button">🐥 1歳</a>
-                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-50 text-yellow-600 py-4 rounded-xl text-center text-xs font-bold action-button">🏃‍♂️ 2歳</a>
-                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-50 text-green-600 py-4 rounded-xl text-center text-xs font-bold action-button">🎒 3歳〜</a>
+                    <a href="https://www.youtube.com/results?search_query=0%E6%AD%B3+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6" target="_blank" class="bg-pink-50 text-pink-600 py-4 rounded-xl text-xs font-bold action-button">👶 0歳</a>
+                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-50 text-orange-600 py-4 rounded-xl text-xs font-bold action-button">🐥 1歳</a>
+                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-50 text-yellow-600 py-4 rounded-xl text-xs font-bold action-button">🏃‍♂️ 2歳</a>
+                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-50 text-green-600 py-4 rounded-xl text-xs font-bold action-button">🎒 3歳〜</a>
                 </div>
-
-                <h3 class="font-bold mb-4 text-orange-800 text-sm text-center italic underline border-t pt-4">🎵 目的・内容でさがす</h3>
+                <h3 class="font-bold mb-4 text-orange-800 text-sm italic underline border-t pt-4">🎵 目的・内容でさがす</h3>
                 <div class="grid grid-cols-1 gap-3">
-                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C+%E5%AD%90%E4%BE%9B" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold text-center shadow-md action-button">🙌 手遊び・歌</a>
-                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold text-center shadow-md action-button">📖 読み聞かせ</a>
-                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold text-center shadow-md action-button">🌙 寝かしつけ音</a>
+                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C+%E5%AD%90%E4%BE%9B" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🙌 手遊び・歌</a>
+                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">📖 読み聞かせ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🌙 寝かしつけ音</a>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                 </div>
             </div>
             <div class="bg-white p-5 rounded-3xl border-2 border-blue-200 card-shadow">
-                <h3 class="text-blue-800 font-bold text-center mb-4 text-sm">📍 近隣検索</h3>
+                <h3 class="text-blue-800 font-bold text-center mb-4 text-sm">📍 近急検索</h3>
                 <div class="grid grid-cols-1 gap-3">
                     <button onclick="quickSearch('小児科')" class="bg-blue-600 text-white p-4 rounded-2xl font-bold action-button">🌡 近くの小児科を探す</button>
                     <button onclick="quickSearch('避難場所')" class="bg-green-600 text-white p-4 rounded-2xl font-bold action-button">🏃‍♂️ 近くの避難場所を探す</button>
@@ -181,9 +181,6 @@
             const query = document.getElementById('mapSearchInput').value;
             if (query) {
                 currentTargetArea = query;
-                const mapUrl = `https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=${encodeURIComponent(query)}`;
-                // プレースホルダとして簡易的な表示に留めるか、直リンクにする
-                const directUrl = `https://www.google.co.jp/maps/search/${encodeURIComponent(query)}`;
                 document.getElementById('mapFrame').src = `https://maps.google.co.jp/maps?q=${encodeURIComponent(query)}&output=embed`;
                 document.getElementById('mapContainer').style.display = 'block';
             }
@@ -192,8 +189,7 @@
         function quickSearch(category) {
             const area = currentTargetArea || "現在地周辺";
             const fullQuery = area + " " + category;
-            const googleMapsUrl = `https://www.google.co.jp/maps/search/${encodeURIComponent(fullQuery)}`;
-            window.open(googleMapsUrl, '_blank');
+            window.open(`https://www.google.co.jp/maps/search/${encodeURIComponent(fullQuery)}`, '_blank');
         }
 
         if (navigator.geolocation) {
@@ -207,12 +203,8 @@
                     const data = await response.json();
                     const city = data.address.city || data.address.town || data.address.village || data.address.county || "お出かけ中";
                     document.getElementById('city-display').innerText = city;
-                } catch (e) {
-                    document.getElementById('city-display').innerText = "お出かけ中";
-                }
-            }, () => {
-                document.getElementById('city-display').innerText = "お出かけ中";
-            });
+                } catch (e) { document.getElementById('city-display').innerText = "お出かけ中"; }
+            }, () => { document.getElementById('city-display').innerText = "お出かけ中"; });
         }
     </script>
 </body>
