@@ -60,9 +60,6 @@
                 <p class="kokoroe-text">● 疲れる前に休むことを優先しましょう。親のHPがゼロになる前に、カフェや休憩室を使いましょう。</p>
             </div>
             <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
-                <p class="kokoroe-text">● 周りの目は気にしすぎないようにしましょう。みんな心の中では「お疲れ様」と応援しています。</p>
-            </div>
-            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
                 <p class="kokoroe-text">● 笑顔で帰れたら100点満点です。泣いて帰っても「今日は大冒険だったね」と自分を褒めましょう。</p>
             </div>
         </div>
@@ -100,10 +97,6 @@
                     <span class="font-bold text-sm text-pink-900">🛍 モール・ベビー用品店</span>
                     <button onclick="quickSearch('ショッピングモール 西松屋 アカチャンホンポ')" class="bg-pink-50 text-pink-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
                 </div>
-                <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-indigo-400 flex justify-between items-center">
-                    <span class="font-bold text-sm text-indigo-900">🔭 観光・道の駅・レジャー</span>
-                    <button onclick="quickSearch('観光スポット 道の駅')" class="bg-indigo-50 text-indigo-700 px-5 py-3 rounded-full font-bold text-xs action-button">探す</button>
-                </div>
             </div>
         </div>
 
@@ -114,6 +107,7 @@
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ（多めに）・おしりふき</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・ビニール袋</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>飲み物・おやつ・離乳食</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500 text-blue-600 font-bold"> <span>使い捨てエプロン・紙パックケース</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>除菌シート・ティッシュ</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>母子手帳・保険証・受給券</span></label>
                     <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>お気に入りのおもちゃ・絵本</span></label>
@@ -123,11 +117,19 @@
 
         <div id="page-video" class="hidden space-y-4 px-2 text-center">
             <div class="bg-white p-6 rounded-2xl card-shadow border-2 border-orange-100">
-                <h3 class="font-bold mb-4 text-orange-800 text-sm">📺 おたすけ動画</h3>
+                <h3 class="font-bold mb-4 text-orange-800 text-sm">📺 月齢・年齢でさがす</h3>
+                <div class="grid grid-cols-2 gap-2 mb-6">
+                    <a href="https://www.youtube.com/results?search_query=%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB+0%E6%AD%B3" target="_blank" class="bg-pink-100 text-pink-700 py-3 rounded-xl font-bold text-xs">👶 0歳</a>
+                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3%E5%85%90+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-100 text-orange-700 py-3 rounded-xl font-bold text-xs">🐥 1歳</a>
+                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3%E5%85%90+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-100 text-yellow-700 py-3 rounded-xl font-bold text-xs">🏃‍♂️ 2歳</a>
+                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-100 text-green-700 py-3 rounded-xl font-bold text-xs">🎒 3歳〜</a>
+                </div>
+
+                <h3 class="font-bold mb-4 text-orange-800 text-sm border-t pt-4">🎵 定番おたすけ動画</h3>
                 <div class="grid grid-cols-1 gap-3">
-                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🙌 手遊び・歌をさがす</a>
-                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">📖 読み聞かせをさがす</a>
-                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🌙 寝かしつけメロディ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🙌 手遊び・歌</a>
+                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">📖 読み聞かせ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🌙 寝かしつけ</a>
                 </div>
             </div>
         </div>
@@ -135,8 +137,8 @@
         <div id="page-form" class="hidden space-y-6 px-2 text-center">
             <div class="bg-orange-50 p-8 rounded-3xl border-2 border-orange-200">
                 <div class="text-4xl mb-4">📮</div>
-                <h3 class="font-bold mb-2 text-orange-800 text-sm">改善・リクエスト意見箱</h3>
-                <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" class="text-orange-600 font-bold underline font-bold">ご意見箱（Googleフォーム）</a>
+                <h3 class="font-bold mb-2 text-orange-800 text-sm">意見箱</h3>
+                <a href="https://forms.gle/iprNpCrzkANENyJr5" target="_blank" class="text-orange-600 font-bold underline">Googleフォーム</a>
             </div>
         </div>
     </div>
