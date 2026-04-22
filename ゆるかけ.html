@@ -4,79 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゆるかけ - 子供とゆるっとお出かけ</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fffaf0; }
-        .header { text-align: center; padding: 20px; background: #fff; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .location-box { background: #fff; border: 2px solid #ffcc00; border-radius: 15px; padding: 15px; margin: 20px 0; text-align: center; }
-        .card { background: #fff; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        h1 { color: #ff9900; font-size: 1.5rem; }
-        h2 { border-bottom: 2px solid #ffcc00; padding-bottom: 5px; color: #555; font-size: 1.2rem; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .btn { display: inline-block; padding: 10px 20px; background: #ffcc00; color: #fff; text-decoration: none; border-radius: 25px; font-weight: bold; margin-top: 10px; }
+        .active-tab { border-bottom: 4px solid #f6ad55; color: #c05621; background-color: #fffaf0; }
+        .tab-text { font-size: 13px; font-weight: 800; letter-spacing: -0.5px; }
+        
+        body { font-family: 'Hiragino Kaku Gothic ProN', sans-serif; background-color: #fdfaf3; max-width: 600px; margin: 0 auto; }
+        .action-button { transition: transform 0.1s; }
+        .action-button:active { transform: scale(0.95); }
+        .header-soft { background-color: #fbd38d; border-radius: 0 0 40px 40px; }
+        .card-shadow { box-shadow: 0 4px 14px 0 rgba(237, 137, 54, 0.1); }
+        .kokoroe-text { font-size: 16px; line-height: 1.8; font-weight: 600; color: #5a4a42; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     </style>
 </head>
-<body>
+<body class="p-0 pb-24 text-gray-800">
 
-<div class="header">
-    <h1>☕️ ゆるかけ</h1>
-    <p>子供とゆるっとお出かけ。頑張らない日のガイド帳</p>
-</div>
+    <header class="text-center p-6 header-soft shadow-sm mb-4">
+        <h1 class="text-3xl font-bold text-orange-800 tracking-tighter">☕️ ゆるかけ</h1>
+        <p class="text-[10px] text-orange-700 mt-2 font-bold tracking-widest">子供とゆるっとお出かけ。頑張らない日のガイド帳</p>
+    </header>
 
-<div class="location-box">
-    <p style="font-size: 0.8rem; color: #888; margin: 0;">📍 いまの場所</p>
-    <h3 id="city-display" style="margin: 5px 0; color: #ff9900;">位置情報を確認中...</h3>
-    <p id="welcome-msg" style="font-size: 0.9rem; margin: 0; color: #666;">お出かけお疲れ様です✨</p>
-</div>
+    <div class="px-2">
+        <div class="bg-white mx-4 p-3 rounded-2xl border-2 border-orange-200 text-center mb-4 card-shadow">
+            <p class="text-[10px] text-gray-400">📍 いまの場所</p>
+            <h3 id="city-display" class="font-bold text-orange-600 text-lg">位置情報を確認中...</h3>
+        </div>
 
-<div class="card">
-    <h2>✨ 心得</h2>
-    <ul>
-        <li>目的地にたどり着けなくても大丈夫です。途中の道でアリを観察するのも立派なお出かけです。</li>
-        <li>準備が完璧じゃなくてもなんとかなります。足りないものは現地で買うくらいの気持ちでいましょう。</li>
-        <li>疲れる前に休むことを優先しましょう。親のHPがゼロになる前に、カフェや休憩室を使いましょう。</li>
-    </ul>
-</div>
+        <div class="flex justify-around mb-6 sticky top-2 bg-white shadow-md rounded-full p-1 z-30 border border-orange-200 overflow-x-auto">
+            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[64px] rounded-full transition-all">✨心得</button>
+            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[64px] rounded-full transition-all">📍地図</button>
+            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[64px] rounded-full transition-all">👜準備</button>
+            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[64px] rounded-full transition-all">🎬動画</button>
+            <button onclick="showPage('form')" id="tab-form" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[64px] rounded-full transition-all">📮声</button>
+        </div>
 
-<div class="card">
-    <h2>🛍 近くのスポットを探す</h2>
-    <p>🧸 支援センター / 🌳 公園 / 🛍 モール / 🐟 水族館</p>
-    <a href="https://www.google.com/maps/search/" class="btn" target="_blank">Googleマップで探す</a>
-</div>
+        <div id="page-heart" class="space-y-6 px-2">
+            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
+                <p class="kokoroe-text">● 目的地にたどり着けなくても大丈夫です。途中の道でアリを観察するのも立派なお出かけです。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
+                <p class="kokoroe-text">● 準備が完璧じゃなくてもなんとかなります。足りないものは現地で買うくらいの気持ちでいましょう。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl card-shadow border-b-4 border-orange-300">
+                <p class="kokoroe-text">● 疲れる前に休むことを優先しましょう。親のHPがゼロになる前に、カフェや休憩室を使いましょう。</p>
+            </div>
+        </div>
 
-<div class="card">
-    <h2>👜 準備チェックリスト</h2>
-    <ul style="list-style: none; padding: 0;">
-        <li>✅ おむつ・おしりふき</li>
-        <li>✅ 着替え・タオル</li>
-        <li>✅ 飲み物・おやつ</li>
-        <li>✅ 母子手帳・保険証</li>
-    </ul>
-</div>
+        <div id="page-map" class="hidden space-y-4 px-2">
+            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-blue-400 flex justify-between items-center">
+                <span class="font-bold text-sm text-blue-900">🧸 支援センター</span>
+                <a href="https://www.google.co.jp/maps/search/%E5%AD%90%E4%BE%9B+%E6%94%AF%E6%8F%B4%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" class="bg-blue-50 text-blue-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+            </div>
+            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-green-400 flex justify-between items-center">
+                <span class="font-bold text-sm text-green-900">🌳 公園・遊び場</span>
+                <a href="https://www.google.co.jp/maps/search/%E5%85%AC%E5%9C%92+%E5%AD%90%E4%BE%9B%E9%81%8A%E3%81%B3%E5%A0%B4" target="_blank" class="bg-green-50 text-green-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+            </div>
+            <div class="bg-white p-4 rounded-2xl card-shadow border-l-4 border-pink-400 flex justify-between items-center">
+                <span class="font-bold text-sm text-pink-900">🛍 モール・赤ちゃん</span>
+                <a href="https://www.google.co.jp/maps/search/%E3%82%B7%E3%83%A7%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%83%A2%E3%83%BC%E3%83%AB+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93" target="_blank" class="bg-pink-50 text-pink-700 px-5 py-3 rounded-full font-bold text-xs">探す</a>
+            </div>
+        </div>
 
-<script>
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            try {
-                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
-                    headers: { 'Accept-Language': 'ja' }
-                });
-                const data = await response.json();
-                const address = data.address;
-                const city = address.city || address.town || address.village || address.county || "どこかの素敵な街";
-                
-                document.getElementById('city-display').innerText = city;
-                // 特定の地名によるメッセージの切り替えを削除しました
-            } catch (e) {
-                document.getElementById('city-display').innerText = "日本国内のどこか";
-            }
-        }, () => {
-            document.getElementById('city-display').innerText = "お出かけ中";
-        });
-    }
-</script>
+        <div id="page-check" class="hidden space-y-4 px-2">
+            <div class="bg-white p-5 rounded-2xl card-shadow border-l-8 border-orange-400">
+                <h3 class="font-bold mb-4 text-orange-800 text-sm italic">👜 忘れ物ないかな？</h3>
+                <div class="space-y-3 text-[14px]">
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おむつ・おしりふき</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>水筒・飲み物</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>おやつ（ぐずり対策）</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>着替え・タオル・袋</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>除菌シート・ティッシュ</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" class="w-6 h-6 accent-orange-500"> <span>母子手帳・保険証</span></label>
+                </div>
+            </div>
+        </div>
 
+        <div id="page-video" class="hidden space-y-4 px-2">
+            <div class="bg-white p-4 rounded-2xl card-shadow">
+                <h3 class="font-bold mb-3 text-orange-800 text-sm text-center">📺 ほっと一息（癒やし動画）</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PL7jN_Csc0f_vNlO7IAn_Ie7mZkaX8eIu0" allowfullscreen></iframe>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-2 text-center">※右上のアイコンから動画を選べます</p>
+            </div>
+        </div>
+
+        <div id="page-form" class="hidden px-2 text-center">
+            <div class="bg-orange-50 p-8 rounded-3xl border-2 border-orange-200">
+                <h3 class="font-bold mb-2 text-orange-800 text-sm">📮 改善・リクエスト意見箱</h3>
+                <a href="#" class="action-button block w-full bg-white text-orange-600 border-2 border-orange-400 py-4 rounded-2xl font-bold text-sm shadow-sm">意見を送る</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // タブ切り替え機能
+        function showPage(pageName) {
+            const pages = ['heart', 'map', 'check', 'video', 'form'];
+            pages.forEach(p => {
+                document.getElementById('page-' + p).classList.add('hidden');
+                const tab = document.getElementById('tab-' + p);
+                tab.classList.remove('active-tab');
+                tab.classList.add('text-gray-500');
+            });
+            document.getElementById('page-' + pageName).classList.remove('hidden');
+            const activeTab = document.getElementById('tab-' + pageName);
+            activeTab.classList.add('active-tab');
+            activeTab.classList.remove('text-gray-500');
+            window.scrollTo(0,0);
+        }
+
+        // 位置情報の取得（アクセスした人の場所を表示）
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                try {
+                    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
+                        headers: { 'Accept-Language': 'ja' }
+                    });
+                    const data = await response.json();
+                    const address = data.address;
+                    const city = address.city || address.town || address.village || address.county || "どこかの街";
+                    document.getElementById('city-display').innerText = city;
+                } catch (e) {
+                    document.getElementById('city-display').innerText = "お出かけ中";
+                }
+            }, () => {
+                document.getElementById('city-display').innerText = "お出かけ中";
+            });
+        }
+    </script>
 </body>
 </html>
