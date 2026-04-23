@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ゆるかけ - 子供とゆるっとお出かけ</title>
     
-    <meta name="description" content="子供とゆるっとお出かけするためのガイド帳。公園検索、持ち物チェック、月齢別動画、緊急ダイヤルまで。">
+    <title>ゆるかけ｜子供とお出かけ準備・公園検索・お助け動画ガイド</title>
+    <meta name="description" content="子供との外出をラクにする「ゆるかけ」。現在地近くの公園や遊び場検索、忘れ物チェックリスト、月齢別の泣き止み動画、緊急ダイヤルを1つにまとめたパパママ応援ツール。">
     
+    <meta property="og:title" content="ゆるかけ - 子供とゆるっとお出かけガイド">
+    <meta property="og:description" content="頑張らない日のお出かけをサポート。公園検索から緊急時の備えまで。">
+    <meta property="og:type" content="website">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
@@ -35,51 +39,42 @@
     </header>
 
     <div class="px-2">
-        <div class="bg-white mx-4 p-4 rounded-2xl border-2 border-orange-200 text-center mb-6 card-shadow">
-            <p class="text-[10px] text-gray-400">📍 いまの場所</p>
-            <h3 id="city-display" class="font-bold text-orange-600 text-lg">位置情報を確認中...</h3>
+        <div class="bg-white mx-4 p-3 rounded-2xl border-2 border-orange-200 text-center mb-6 card-shadow">
+            <p class="text-[10px] text-gray-400">📍 検索エリア</p>
+            <h3 id="city-display" class="font-bold text-orange-600 text-lg">現在地周辺</h3>
         </div>
 
         <div class="flex justify-between mb-6 sticky top-2 bg-white shadow-md rounded-full p-1 z-30 border border-orange-200 overflow-x-auto no-scrollbar">
-            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">✨心得</button>
-            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">📍地図</button>
-            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">👜準備</button>
-            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">🎬動画</button>
-            <button onclick="showPage('emergency')" id="tab-emergency" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">🏥緊急</button>
-            <button onclick="showPage('form')" id="tab-form" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full transition-all">📮声</button>
+            <button onclick="showPage('heart')" id="tab-heart" class="py-3 px-1 active-tab tab-text flex-1 text-center min-w-[50px] rounded-full">✨心得</button>
+            <button onclick="showPage('map')" id="tab-map" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">📍地図</button>
+            <button onclick="showPage('check')" id="tab-check" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">👜準備</button>
+            <button onclick="showPage('video')" id="tab-video" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">🎬動画</button>
+            <button onclick="showPage('emergency')" id="tab-emergency" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">🏥緊急</button>
+            <button onclick="showPage('form')" id="tab-form" class="py-3 px-1 text-gray-500 tab-text flex-1 text-center min-w-[50px] rounded-full">📮声</button>
         </div>
 
         <div id="page-heart" class="space-y-4 px-2">
             <div class="text-center pb-2">
                 <span class="bg-orange-100 text-orange-800 px-4 py-1 rounded-full text-[10px] font-bold tracking-widest">お出かけがラクになるお守り</span>
             </div>
-            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
-                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">目的地にたどり着けなくても大丈夫。</span>途中の道でアリを観察するのも、立派な「大冒険」です。</p>
-            </div>
-            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
-                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">親のHPを最優先に。</span>自分が疲れる前に休みましょう。休憩室は親が座るためにあります。</p>
-            </div>
-            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
-                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">「何もしない」をしに行こう。</span>予定を詰め込まないのが、子供との一番贅沢な過ごし方です。</p>
-            </div>
-            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
-                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">泣いても、それも思い出。</span>公共の場で泣いちゃっても大丈夫。いつか笑えるネタになります。</p>
-            </div>
-            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200">
-                <p class="kokoroe-text">● <span class="text-orange-600 font-bold">笑顔で帰れたら100点満点。</span>もし泣いて帰っても、無事に帰宅できただけで花丸です。</p>
-            </div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200"><p class="kokoroe-text">● <span class="text-orange-600 font-bold">目的地にたどり着けなくても大丈夫。</span>途中の道でアリを観察するのも、立派な「大冒険」です。</p></div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200"><p class="kokoroe-text">● <span class="text-orange-600 font-bold">親のHPを最優先に。</span>自分が疲れる前に休みましょう。休憩室は親が座るためにあります。</p></div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200"><p class="kokoroe-text">● <span class="text-orange-600 font-bold">「何もしない」をしに行こう。</span>予定を詰め込まないのが、子供との一番贅沢な過ごし方です。</p></div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200"><p class="kokoroe-text">● <span class="text-orange-600 font-bold">泣いても、それも思い出。</span>公共の場で泣いちゃっても大丈夫。いつか笑えるネタになります。</p></div>
+            <div class="bg-white p-5 rounded-3xl card-shadow border-b-4 border-orange-200"><p class="kokoroe-text">● <span class="text-orange-600 font-bold">笑顔で帰れたら100点満点。</span>もし泣いて帰っても、無事に帰宅できただけで花丸です。</p></div>
         </div>
 
         <div id="page-map" class="hidden space-y-4 px-2">
             <div class="bg-white p-4 rounded-2xl card-shadow border-2 border-blue-100 text-center">
-                <p class="text-[12px] font-bold text-gray-500 mb-2">🔎 地図検索（場所を入力してね）</p>
-                <div class="flex gap-2 mb-2">
-                    <input type="text" id="mapSearchInput" placeholder="例：〇〇市" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm">
-                    <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md action-button">検索</button>
+                <p class="text-[12px] font-bold text-gray-500 mb-2">🔎 どこに行きますか？</p>
+                <div class="flex flex-col gap-2 mb-2">
+                    <div class="flex gap-2">
+                        <input type="text" id="mapSearchInput" placeholder="例：代々木公園、横浜駅など" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm">
+                        <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm action-button">検索</button>
+                    </div>
+                    <button onclick="getCurrentLocation()" class="bg-gray-100 text-blue-600 p-2 rounded-lg font-bold text-xs border border-blue-200 action-button">📍 現在地から探す</button>
                 </div>
-                <div id="mapContainer" style="display: none;">
-                    <iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+                <div id="mapContainer" style="display: none;"><iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe></div>
             </div>
             <div class="grid grid-cols-1 gap-3 text-sm">
                 <button onclick="quickSearch('支援センター 室内遊び場')" class="bg-white p-4 rounded-xl border-l-4 border-blue-400 shadow-sm text-left font-bold action-button">🧸 支援センター・室内遊び場</button>
@@ -104,20 +99,20 @@
             </div>
         </div>
 
-        <div id="page-video" class="hidden space-y-4 px-2">
-            <div class="bg-white p-5 rounded-2xl card-shadow border-2 border-orange-100 text-center">
+        <div id="page-video" class="hidden space-y-4 px-2 text-center">
+            <div class="bg-white p-5 rounded-2xl card-shadow border-2 border-orange-100">
                 <h3 class="font-bold mb-4 text-orange-800 text-sm italic underline">📺 月齢別でさがす</h3>
-                <div class="grid grid-cols-2 gap-2 mb-6">
-                    <a href="https://www.youtube.com/results?search_query=0%E6%AD%B3+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6" target="_blank" class="bg-pink-50 text-pink-600 py-4 rounded-xl text-xs font-bold action-button">👶 0歳</a>
-                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-50 text-orange-600 py-4 rounded-xl text-xs font-bold action-button">🐥 1歳</a>
-                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-50 text-yellow-600 py-4 rounded-xl text-xs font-bold action-button">🏃‍♂️ 2歳</a>
-                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-50 text-green-600 py-4 rounded-xl text-xs font-bold action-button">🎒 3歳〜</a>
+                <div class="grid grid-cols-2 gap-2 mb-6 text-xs font-bold leading-relaxed">
+                    <a href="https://www.youtube.com/results?search_query=0%E6%AD%B3+%E8%B5%A4%E3%81%A1%E3%82%83%E3%82%93+%E5%96%9C%E3%81%B6" target="_blank" class="bg-pink-50 text-pink-600 py-4 rounded-xl action-button">👶 0歳</a>
+                    <a href="https://www.youtube.com/results?search_query=1%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-orange-50 text-orange-600 py-4 rounded-xl action-button">🐥 1歳</a>
+                    <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-50 text-yellow-600 py-4 rounded-xl action-button">🏃‍♂️ 2歳</a>
+                    <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-50 text-green-600 py-4 rounded-xl action-button">🎒 3歳〜</a>
                 </div>
                 <h3 class="font-bold mb-4 text-orange-800 text-sm italic underline border-t pt-4">🎵 目的・内容でさがす</h3>
-                <div class="grid grid-cols-1 gap-3">
-                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C+%E5%AD%90%E4%BE%9B" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🙌 手遊び・歌</a>
-                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">📖 読み聞かせ</a>
-                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl font-bold shadow-md action-button">🌙 寝かしつけ音</a>
+                <div class="grid grid-cols-1 gap-3 font-bold">
+                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C+%E5%AD%90%E4%BE%9B" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl shadow-md action-button">🙌 手遊び・歌</a>
+                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl shadow-md action-button">📖 読み聞かせ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl shadow-md action-button">🌙 寝かしつけ音</a>
                 </div>
             </div>
         </div>
@@ -127,26 +122,20 @@
                 <h3 class="text-red-700 font-bold text-center mb-4 text-sm">🏥 緊急お守りダイヤル</h3>
                 <div class="space-y-3">
                     <a href="tel:8000" class="bg-white border-2 border-red-400 p-4 rounded-2xl flex justify-between items-center action-button">
-                        <div class="text-left">
-                            <p class="text-[10px] text-red-500 font-bold">夜間・休日の相談</p>
-                            <p class="font-bold text-red-800 italic text-xl">#8000</p>
-                        </div>
+                        <div class="text-left"><p class="text-[10px] text-red-500 font-bold">夜間・休日の相談</p><p class="font-bold text-red-800 italic text-xl">#8000</p></div>
                         <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">子ども医療相談</span>
                     </a>
                     <a href="tel:7119" class="bg-white border-2 border-gray-400 p-4 rounded-2xl flex justify-between items-center action-button">
-                        <div class="text-left">
-                            <p class="text-[10px] text-gray-500 font-bold">救急車か迷ったら</p>
-                            <p class="font-bold text-gray-800 italic text-xl">#7119</p>
-                        </div>
+                        <div class="text-left"><p class="text-[10px] text-gray-500 font-bold">救急車か迷ったら</p><p class="font-bold text-gray-800 italic text-xl">#7119</p></div>
                         <span class="text-xs font-bold text-gray-600 bg-gray-50 px-2 py-1 rounded">救急安心センター</span>
                     </a>
                 </div>
             </div>
             <div class="bg-white p-5 rounded-3xl border-2 border-blue-200 card-shadow">
                 <h3 class="text-blue-800 font-bold text-center mb-4 text-sm">📍 近急検索</h3>
-                <div class="grid grid-cols-1 gap-3">
-                    <button onclick="quickSearch('小児科')" class="bg-blue-600 text-white p-4 rounded-2xl font-bold action-button">🌡 近くの小児科を探す</button>
-                    <button onclick="quickSearch('避難場所')" class="bg-green-600 text-white p-4 rounded-2xl font-bold action-button">🏃‍♂️ 近くの避難場所を探す</button>
+                <div class="grid grid-cols-1 gap-3 font-bold">
+                    <button onclick="quickSearch('小児科')" class="bg-blue-600 text-white p-4 rounded-2xl action-button">🌡 近くの小児科を探す</button>
+                    <button onclick="quickSearch('避難場所')" class="bg-green-600 text-white p-4 rounded-2xl action-button">🏃‍♂️ 近くの避難場所を探す</button>
                 </div>
             </div>
         </div>
@@ -162,7 +151,7 @@
     </div>
 
     <script>
-        let currentTargetArea = ""; 
+        let currentTargetArea = "現在地周辺"; 
 
         function showPage(pageName) {
             const pages = ['heart', 'map', 'check', 'video', 'emergency', 'form'];
@@ -181,8 +170,37 @@
             const query = document.getElementById('mapSearchInput').value;
             if (query) {
                 currentTargetArea = query;
+                document.getElementById('city-display').innerText = query + " 付近";
                 document.getElementById('mapFrame').src = `https://maps.google.co.jp/maps?q=${encodeURIComponent(query)}&output=embed`;
                 document.getElementById('mapContainer').style.display = 'block';
+            }
+        }
+
+        function getCurrentLocation() {
+            document.getElementById('city-display').innerText = "位置情報を確認中...";
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    document.getElementById('mapFrame').src = `https://maps.google.co.jp/maps?q=${lat},${lng}&z=15&output=embed`;
+                    document.getElementById('mapContainer').style.display = 'block';
+                    try {
+                        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
+                            headers: { 'Accept-Language': 'ja' }
+                        });
+                        const data = await response.json();
+                        const city = data.address.city || data.address.town || data.address.village || data.address.county || "現在地";
+                        currentTargetArea = city;
+                        document.getElementById('city-display').innerText = "現在地 (" + city + ")";
+                        document.getElementById('mapSearchInput').value = city;
+                    } catch (e) {
+                        currentTargetArea = "現在地周辺";
+                        document.getElementById('city-display').innerText = "現在地周辺";
+                    }
+                }, () => {
+                    document.getElementById('city-display').innerText = "現在地周辺（許可なし）";
+                    alert("位置情報の許可がないため、おおまかな現在地周辺で検索します。");
+                });
             }
         }
 
@@ -190,21 +208,6 @@
             const area = currentTargetArea || "現在地周辺";
             const fullQuery = area + " " + category;
             window.open(`https://www.google.co.jp/maps/search/${encodeURIComponent(fullQuery)}`, '_blank');
-        }
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                try {
-                    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
-                        headers: { 'Accept-Language': 'ja' }
-                    });
-                    const data = await response.json();
-                    const city = data.address.city || data.address.town || data.address.village || data.address.county || "お出かけ中";
-                    document.getElementById('city-display').innerText = city;
-                } catch (e) { document.getElementById('city-display').innerText = "お出かけ中"; }
-            }, () => { document.getElementById('city-display').innerText = "お出かけ中"; });
         }
     </script>
 </body>
