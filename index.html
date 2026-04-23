@@ -29,6 +29,12 @@
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .animate-bounce-subtle { animation: bounce-subtle 1s infinite; }
     </style>
 </head>
 <body class="p-0 pb-24 text-gray-800">
@@ -70,10 +76,15 @@
                 <div class="flex flex-col gap-2 mb-2">
                     <div class="flex gap-2">
                         <input type="text" id="mapSearchInput" placeholder="例：代々木公園、横浜駅など" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm">
-                        <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm action-button">検索</button>
+                        <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md action-button">検索</button>
                     </div>
                     <button onclick="getCurrentLocation()" class="bg-gray-100 text-blue-600 p-2 rounded-lg font-bold text-xs border border-blue-200 action-button">📍 現在地から探す</button>
                 </div>
+                
+                <p id="search-guide" class="text-[11px] text-orange-600 font-bold mt-1 mb-2 hidden animate-bounce-subtle">
+                    👇 下のボタンを押して近くの施設を探そう！
+                </p>
+
                 <div id="mapContainer" style="display: none;"><iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe></div>
             </div>
             <div class="grid grid-cols-1 gap-3 text-sm">
@@ -166,6 +177,7 @@
             window.scrollTo(0,0);
         }
 
+        // 行き先で検索
         function searchMap() {
             const query = document.getElementById('mapSearchInput').value;
             if (query) {
@@ -173,9 +185,13 @@
                 document.getElementById('city-display').innerText = query + " 付近";
                 document.getElementById('mapFrame').src = `https://maps.google.co.jp/maps?q=${encodeURIComponent(query)}&output=embed`;
                 document.getElementById('mapContainer').style.display = 'block';
+                
+                // ガイドメッセージを表示
+                document.getElementById('search-guide').classList.remove('hidden');
             }
         }
 
+        // 現在地を取得（ボタン押下時のみ）
         function getCurrentLocation() {
             document.getElementById('city-display').innerText = "位置情報を確認中...";
             if (navigator.geolocation) {
@@ -184,6 +200,10 @@
                     const lng = position.coords.longitude;
                     document.getElementById('mapFrame').src = `https://maps.google.co.jp/maps?q=${lat},${lng}&z=15&output=embed`;
                     document.getElementById('mapContainer').style.display = 'block';
+                    
+                    // ガイドメッセージを表示
+                    document.getElementById('search-guide').classList.remove('hidden');
+
                     try {
                         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`, {
                             headers: { 'Accept-Language': 'ja' }
@@ -198,8 +218,8 @@
                         document.getElementById('city-display').innerText = "現在地周辺";
                     }
                 }, () => {
-                    document.getElementById('city-display').innerText = "現在地周辺（許可なし）";
-                    alert("位置情報の許可がないため、おおまかな現在地周辺で検索します。");
+                    document.getElementById('city-display').innerText = "現在地周辺（未許可）";
+                    alert("位置情報の利用が許可されませんでした。直接入力で検索してください。");
                 });
             }
         }
