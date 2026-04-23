@@ -3,36 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>ゆるかけ｜子供とお出かけ準備・公園検索・お助け動画ガイド</title>
     <meta name="description" content="子供との外出をラクにする「ゆるかけ」。現在地近くの公園や遊び場検索、忘れ物チェックリスト、月齢別の泣き止み動画、緊急ダイヤルを1つにまとめたパパママ応援ツール。">
-    
-    <meta property="og:title" content="ゆるかけ - 子供とゆるっとお出かけガイド">
-    <meta property="og:description" content="頑張らない日のお出かけをサポート。公園検索から緊急時の備えまで。">
-    <meta property="og:type" content="website">
-
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .active-tab { border-bottom: 4px solid #f6ad55; color: #c05621; background-color: #fffaf0; }
         .tab-text { font-size: 10px; font-weight: 800; letter-spacing: -0.8px; white-space: nowrap; }
-        
         body { font-family: 'Hiragino Kaku Gothic ProN', sans-serif; background-color: #fdfaf3; max-width: 600px; margin: 0 auto; }
         .action-button { transition: transform 0.1s; }
         .action-button:active { transform: scale(0.95); }
         .header-soft { background-color: #fbd38d; border-radius: 0 0 40px 40px; }
         .card-shadow { box-shadow: 0 4px 14px 0 rgba(237, 137, 54, 0.1); }
         .kokoroe-text { font-size: 15px; line-height: 1.8; font-weight: 600; color: #5a4a42; }
-        
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        @keyframes bounce-subtle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
+        @keyframes bounce-subtle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
         .animate-bounce-subtle { animation: bounce-subtle 1s infinite; }
     </style>
 </head>
@@ -73,15 +60,13 @@
                 <div class="flex flex-col gap-2 mb-2">
                     <div class="flex gap-2">
                         <input type="text" id="mapSearchInput" placeholder="例：代々木公園、横浜駅など" class="flex-1 p-2 border border-gray-300 rounded-lg text-sm">
-                        <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md action-button">検索</button>
+                        <button onclick="searchMap()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-sm action-button">検索</button>
                     </div>
                     <button onclick="getCurrentLocation()" class="bg-gray-100 text-blue-600 p-2 rounded-lg font-bold text-xs border border-blue-200 action-button">📍 現在地から探す</button>
                 </div>
-                
                 <div id="search-guide" class="hidden bg-orange-50 border border-orange-200 rounded-xl p-2 my-2 animate-bounce-subtle">
                     <p class="text-[11px] text-orange-700 font-bold">✨ 準備OK！<br>下のボタンを押して近くの施設を探そう！</p>
                 </div>
-
                 <div id="mapContainer" style="display: none;"><iframe id="mapFrame" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe></div>
             </div>
             <div class="grid grid-cols-1 gap-3 text-sm">
@@ -116,20 +101,21 @@
                     <a href="https://www.youtube.com/results?search_query=2%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%96%9C%E3%81%B6+%E5%8B%95%E7%94%BB" target="_blank" class="bg-yellow-50 text-yellow-600 py-4 rounded-xl action-button">🏃‍♂️ 2歳</a>
                     <a href="https://www.youtube.com/results?search_query=3%E6%AD%B3+4%E6%AD%B3+%E5%AD%90%E4%BE%9B+%E5%8B%95%E7%94%BB" target="_blank" class="bg-green-50 text-green-600 py-4 rounded-xl action-button">🎒 3歳〜</a>
                 </div>
-                <h3 class="font-bold mb-4 text-orange-800 text-sm italic underline border-t pt-4">🎵 目的別</h3>
+                <h3 class="font-bold mb-4 text-orange-800 text-sm italic underline border-t pt-4">🎵 内容でさがす</h3>
                 <div class="grid grid-cols-1 gap-3 font-bold">
-                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl action-button">🙌 手遊び・歌</a>
-                    <a href="https://www.youtube.com/results?search_query=%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl action-button">🌙 寝かしつけ音</a>
+                    <a href="https://www.youtube.com/results?search_query=%E6%89%8B%E9%81%8A%E3%81%B3%E6%AD%8C+%E5%AD%90%E4%BE%9B" target="_blank" class="bg-red-400 text-white py-4 rounded-2xl shadow-md action-button">🙌 手遊び・歌</a>
+                    <a href="https://www.youtube.com/results?search_query=%E7%B5%B5%E6%9C%AC+%E8%AA%AD%E3%81%BF%E8%81%9E%E3%81%8B%E3%81%9B" target="_blank" class="bg-orange-400 text-white py-4 rounded-2xl shadow-md action-button">📖 読み聞かせ</a>
+                    <a href="https://www.youtube.com/results?search_query=%E5%AD%90%E4%BE%9B+%E5%AF%9D%E3%81%8B%E3%81%97%E3%81%A4%E3%81%91+%E3%82%AA%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%AB" target="_blank" class="bg-indigo-400 text-white py-4 rounded-2xl shadow-md action-button">🌙 寝かしつけ音（オルゴール）</a>
                 </div>
             </div>
         </div>
 
         <div id="page-emergency" class="hidden space-y-4 px-2">
             <div class="bg-red-50 p-5 rounded-3xl border-2 border-red-200 card-shadow text-center">
-                <h3 class="text-red-700 font-bold mb-4 text-sm">🏥 緊急ダイヤル</h3>
+                <h3 class="text-red-700 font-bold mb-4 text-sm">🏥 緊急ダイヤル・検索</h3>
                 <div class="space-y-3">
                     <a href="tel:8000" class="bg-white border-2 border-red-400 p-4 rounded-2xl flex justify-between items-center action-button">
-                        <div class="text-left"><p class="text-[10px] text-red-500 font-bold">夜間・休日</p><p class="font-bold text-red-800 text-xl">#8000</p></div>
+                        <div class="text-left"><p class="text-[10px] text-red-500 font-bold">夜間・休日の相談</p><p class="font-bold text-red-800 text-xl">#8000</p></div>
                         <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded">子ども医療相談</span>
                     </a>
                     <a href="tel:7119" class="bg-white border-2 border-gray-400 p-4 rounded-2xl flex justify-between items-center action-button">
@@ -137,6 +123,7 @@
                         <span class="text-xs font-bold text-gray-600 bg-gray-50 px-2 py-1 rounded">救急安心センター</span>
                     </a>
                     <button onclick="quickSearch('小児科')" class="w-full bg-blue-600 text-white p-4 rounded-2xl font-bold shadow-md action-button">🌡 近くの小児科を探す</button>
+                    <button onclick="quickSearch('避難場所')" class="w-full bg-green-600 text-white p-4 rounded-2xl font-bold shadow-md action-button">🏃‍♂️ 近くの避難場所を探す</button>
                 </div>
             </div>
         </div>
